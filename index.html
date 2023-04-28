@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Show Image based on ID and Name</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			padding: 20px;
+		}
+		form {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			margin-bottom: 20px;
+		}
+		input[type="button"] {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px;
+			cursor: pointer;
+		}
+		input[type="button"]:hover {
+			background-color: #3e8e41;
+		}
+		#error-msg {
+			color: red;
+			font-weight: bold;
+			margin-top: 20px;
+			display: none;
+		}
+		#image-container {
+			margin-top: 20px;
+			display: none;
+		}
+		.logo {
+			display: block;
+			margin: 0 auto;
+			max-width: 400px;
+		}
+	</style>
+</head>
+<body>
+	<img class="logo" src="https://example.com/logo.png" alt="Logo">
+
+	<form>
+		<label for="id">Enter your ID:</label>
+		<input type="text" id="id" name="id">
+		<label for="name">Enter your name:</label>
+		<input type="text" id="name" name="name">
+		<input type="button" value="Submit" onclick="showImage()">
+	</form>
+
+	<div id="error-msg"></div>
+	<div id="image-container"></div>
+
+	<script>
+		function showImage() {
+			// get the values of the ID and name input fields
+			var id = document.getElementById("id").value;
+			var name = document.getElementById("name").value;
+
+			// check if the ID and name are valid
+			if (id !== "1742ENB00943" || name !== "Yasir Arafat Diganta") {
+				document.getElementById("error-msg").innerHTML = "Invalid ID or name. Please enter a valid ID and name.";
+				document.getElementById("error-msg").style.display = "block";
+				document.getElementById("image-container").style.display = "none";
+				return;
+			}
+
+			// create an image element and set its source based on the ID
+			var img = document.createElement("img");
+			img.src = "https://example.com/images/" + id + ".jpg";
+			img.style.maxWidth = "100%";
+			img.style.display = "block";
+			img.style.margin = "0 auto";
+
+			// display the image element and hide the error message
+			document.getElementById("error-msg").style.display = "none";
+			document.getElementById("image-container").appendChild(img);
+			document.getElementById("image-container").style.display = "block";
+		}
+	</script>
+</body>
+</html>
